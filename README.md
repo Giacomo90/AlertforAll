@@ -13,11 +13,11 @@
 
 ###### USING NPM:
 ```bash
-$ npm install AlertforAll
+$ npm install alertforall
 ```
 ###### USING YARN:
 ```bash
- $ yarn add AlertforAll
+ $ yarn add alertforall
 ```
 
  ## Starting
@@ -26,11 +26,11 @@ After installing the module as described above, you need to import it to your pr
 
 
 ```javascript
-import AlertforAll,{Alert,Toast} from 'AlertforAll'
+import AlertforAll,{Alert,Toast} from 'alertforalll'
 ```
 
 ```javascript
-const AlertforAll = require('AlertforAll') 
+const AlertforAll = require('alertforall') 
 ```
 
 
@@ -40,7 +40,7 @@ const AlertforAll = require('AlertforAll')
 
 
 ```javascript
-  import {Alert} from 'AlertforAll'
+  import {Alert} from 'alertforall'
 
   Alert.type1({TitleMsg:'This is an Alert from AlertforAll'})
 ```
@@ -49,7 +49,7 @@ const AlertforAll = require('AlertforAll')
 or
 
 ```javascript
-  import {Alert} from 'AlertforAll'
+  import {Alert} from 'alertforall'
 
   Alert.type1({TitleMsg:'Do you want to save?', Btn_Confirm:'Yes', Btn_Cancel:'No'})
 ```
@@ -59,7 +59,7 @@ or
 ######  You can also call the function directly to perform some configurations
 
 ```javascript
-import AlertforAll from 'AlertforAll'
+import AlertforAll from 'alertforall'
 
 const setting = {
   isDark:true,
@@ -92,13 +92,13 @@ Promises are currently only available for Alert types, and return boolean values
 In addition to the Alerts we also show some very useful Toasts for mobile devices
 
 ```javascript
-import AlertforAll,{Toast} from 'AlertforAll'
+import AlertforAll,{Toast} from 'alertforall'
 
 AlertforAll(Setting).frame2({TitleMsg:'An error occurred, please try again later',Ico:'Error'})
 ```
 alternative
 ```javascript
-import AlertforAll,{Toast} from 'AlertforAll'
+import AlertforAll,{Toast} from 'alertforall'
 
 Toast.frame2({TitleMsg:'An error occurred, please try again later',Ico:'Error'})
 ```
