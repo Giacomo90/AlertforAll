@@ -1,9 +1,10 @@
-
 ![AlertforAll](./read/logo.png)
 
 
 #### Version : 1.0.0
 
+[Github](https://github.com/Giacomo90/AlertforAll)
+[BUG or INFO](https://github.com/Giacomo90/AlertforAll/issues)
 
 
 #### <font color="olive"> AlertforAll is a very lightweight library compatible with many javascript and typescript frameworks. </font>
