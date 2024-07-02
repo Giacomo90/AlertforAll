@@ -1,9 +1,11 @@
+
 ![AlertforAll](./read/logo.png)
 
 
-#### Version : 1.0.0
+#### Version : 1.0.2
 
 [Github](https://github.com/Giacomo90/AlertforAll)
+
 [BUG or INFO](https://github.com/Giacomo90/AlertforAll/issues)
 
 
@@ -114,10 +116,10 @@ Toasts still don't accept promises
 | ------ | :------: | :------: | ---|
 | **type1()** | Alert.type1() or AlertforAll().type1() |**TitleMsg**:string <br> **Btn_Confirm**:string <br> **Btn_Cancel**:string| **TitleMsg**: required <br> **Btn_Confirm & Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.
 | **type2()** | Alert.type2() or AlertforAll().type2() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>**TextMsg**:string|**TitleMsg**: required <br> **Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.<br> **TextMsg**:not necessary
-| **type3()** | Alert.type3() or AlertforAll().type3() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>**TextMsg**:string <br> **Ico**: 'success','error','alert','info','question'|**TitleMsg**: required <br> **Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.<br> **TextMsg**:not necessary<br> **Ico**:not neccessary, default 'success'
+| **type3()** | Alert.type3() or AlertforAll().type3() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>**TextMsg**:string <br> **Ico**: 'Success','Error','Warning','Info','Question'|**TitleMsg**: required <br> **Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.<br> **TextMsg**:not necessary<br> **Ico**:not neccessary, default 'success'
 | **type4()** | Alert.type4() or AlertforAll().type4() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>  **restriction**:array of string <br> **obliged**:array of string <br> **type**:'text','textarea','password', 'username','telephone','url','search'|**TitleMsg**: required <br> **Btn_Cancel**: required, <br> **restriction**:not necessary **obliged**:not necessary <br> **type**:not necessary,default 'text'
 | **frame1()** | Toast.frame1() or AlertforAll().frame1() |**TitleMsg**:string |**TitleMsg**: required <br>
-| **frame2()** | Toast.frame2() or AlertforAll().frame2() |**TitleMsg**:string <br> **Ico**:'success','error','alert','info' |**TitleMsg**: required <br> **Ico**:not neccessary, default 'success'
+| **frame2()** | Toast.frame2() or AlertforAll().frame2() |**TitleMsg**:string <br> **Ico**:'Success','Error','Warning','Info' |**TitleMsg**: required <br> **Ico**:not neccessary, default 'Success'
 
 
 ## The various settings
