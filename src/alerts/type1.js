@@ -1,145 +1,164 @@
-import Progress from "../utils/progress"
 
+export function type1({TitleMsg,TextMsg,Btn_Confirm,Btn_Cancel,Btn_Third},sett){
 
-// Alert type 1
+    const setting = sett === undefined ? {} : sett
+    const Device = setting.device || 'android'
+    
 
-export function type1({TitleMsg,Btn_Confirm,Btn_Cancel},sett){ 
-
-
-
-
-  const setting = sett === undefined ? {} : sett
-  const delay = setting.delay || 3000
-  const progressStyle = setting.progressStyle || 1
-  const progress = new Progress(delay, progressStyle)
-
-  return  new Promise((resolve,reject)=>{
-
-
-    const styles ={
-        Container:{
-          position: 'fixed',
-          top: setting.position === 'top' ? '5%' : setting.position === 'center' ? '30%': setting.position === 'bottom'? null : '30%',
-          left: '50%',
-          bottom: setting.position === 'bottom' ? '5%' : null,
-          width: window.innerWidth < 600 ? '60vw' : window.innerWidth > 601 && window.innerWidth < 1024 ? '55vw' : window.innerWidth > 1024 ? '65vw' : '55vw',
-          maxWidth: '33em',
-          transform: 'translateX(-50%)',
-          backgroundColor: setting.isDark ? 'rgba(95,95,95,0.9)' : 'rgba(248, 248, 248,0.9)',
-          color: setting.color ? setting.color : setting.isDark ? '#eee' : '#333',
-          padding: '3.3rem',
-          borderRadius: '16px',
-          boxShadow: '0 0 10px rgba(0, 0, 0, 0.5) ',
-          zIndex: '999',
-          transition: 'opacity 0.5s ease-in-out',
-          opacity: '0',
-          height: Btn_Confirm || Btn_Cancel ? '150px' : '120px'
-        },
-        TitleAlert:{
-          fontSize:  window.innerWidth < 600 ? '1rem' : window.innerWidth > 601 && window.innerWidth < 1024 ? '1.1rem' : window.innerWidth > 1024 ? '1.2rem' : '1.1rem',
-          textAlign:'center',
-          margin:'30px'
-        },
-        ButtonConfirm:{
-        height:'45px',
-        minHeight:'44px',
-        minWidth:'100px',
-        padding:'15px',
-        position:'absolute',
-        bottom:'30px', left:'45px',
-        margin:'5px',
+const styles={
+    Container:{
+        position:'fixed',
+        top:'0px',left:'0px',bottom:'0px', right:'0px',
+        backgroundColor: setting.isDark ? 'rgba(200,200,200,0.8)' : 'rgba(55,55,55,0.8)',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        opacity:'0',
+        zIndex: '999',
+        transition: 'opacity 0.5s ease-in-out',
+    },
+    Modal:{
+        minHeight: Device === '130px',
+        width: Device === 'ios'? '270px': '300px',
+        backgroundColor: setting.isDark ? 'rgba(55,55,55,0.95)' : 'rgba(245,245,245,0.95)',
+        borderRadius: Device === 'ios'? '16px':'3px',
+        display:'flex',
+        boxShadow: '0 0 10px rgba(11, 11, 11, 0.5)',
+        flexDirection:'column',
+        justifyItems:Device === 'ios'? 'center' : 'start',
+        alignItems:Device === 'ios'? 'center' : 'start',
+        color: setting.isDark ? 'rgb(245,245,245)' :'rgb(33,33,33)'
+    },
+    TitleText:{
+        textAlign: Device === 'ios'? 'center' : 'start',
+        fontSize:'16px',
+        fontWeight:'600',
+        margin: Device === 'ios'?'10px':'15px',
+        maxWidth: Device === 'ios'? '200px' : '250px'
+    },
+    MsgText:{
+        textAlign: Device === 'ios'? 'center' : 'start',
+        fontSize:'14px',
+        margin:'15px',
+        maxWidth: Device === 'ios'? '200px' : '250px'
+    },
+    ContainerButtons:{
+        borderTop: Device==='ios'? 'solid grey 0.1px' : null,
+        width:'270px',
+        marginTop:'15px',
+        display:'flex',
+        justifyContent: Device === 'ios'? 'center' : 'end',
+        
+    },
+    Buttons:{
         border:'hidden',
-        borderRadius:'16px',
-        backgroundColor: setting.buttonConfirmColor ? setting.buttonConfirmColor : 'rgb(96, 181, 88)',
-        color: setting.textConfirmColor ? setting.textConfirmColor : 'white',
-        fontSize: window.innerWidth < 600 ? '0.8rem' : window.innerWidth > 601 && window.innerWidth < 1024 ? '0.9rem' : window.innerWidth > 1024 ? '1rem' : '1rem',
-        fontWeight:'600'
-        },
-        buttonClose:{
-            height:'45px',
-            minHeight:'44px',
-            minWidth:'100px',
-            padding:'15px',
-            position:'absolute',
-            bottom:'30px', right:'45px',
-            margin:'5px',
-            border:'hidden',
-            borderRadius:'16px',
-            backgroundColor:setting.buttonCancelColor ? setting.buttonCancelColor :'rgb(216, 96, 96)',
-            color: setting.textCancelColor ? setting.textCancelColor : 'white',
-            fontSize: window.innerWidth < 600 ? '0.8rem' : window.innerWidth > 601 && window.innerWidth < 1024 ? '0.9rem' : window.innerWidth > 1024 ? '1rem' : '1rem',
-            fontWeight:'600'
-            }
-
+        backgroundColor:'transparent',
+        height:'50px',
+        minWidth:Device === 'ios'? '100px' : '60px' ,
+        fontSize:Device === 'ios'?  '16px' : '14px',
+        fontWeight:'600',
+        color: Device === 'ios'? 'rgb(68, 130, 255)' : 'rgb(36, 195, 142)'
+    },
+    Divisor:{
+        borderLeft:'solid grey 0.1px',
+        marginLeft:'15px',
+        marginRight:'15px'
     }
+}
 
 
-      if(TitleMsg === !undefined || TitleMsg === !null || TitleMsg?.length > 0){
 
-                  const Container = document.createElement("div");
-                  Object.assign(Container.style, styles.Container);
-             
-             const textTitle = document.createElement("h2")
-                   textTitle.textContent = TitleMsg;
-                   Object.assign(textTitle.style, styles.TitleAlert);
-         
-             
-             const buttonExit = document.createElement('button');
-                   buttonExit.textContent = Btn_Cancel
-                   buttonExit.addEventListener('click', ()=>{CloseToast(false)})
-                   Object.assign(buttonExit.style, styles.buttonClose);
-         
-             const buttonConfirm = document.createElement('button')  
-                   buttonConfirm.textContent = Btn_Confirm         
-                   buttonConfirm.addEventListener('click', ()=>{CloseToast(true)})
-                   Object.assign(buttonConfirm.style, styles.ButtonConfirm);
+     new Promise((resolve,reject)=>{
 
-         Container.appendChild(textTitle)
-       if(Btn_Confirm === !undefined || Btn_Confirm === !null || Btn_Confirm?.length > 0){Container.appendChild(buttonConfirm)} 
-       if(Btn_Cancel  === !undefined || Btn_Cancel  === !null || Btn_Cancel?.length > 0 ){Container.appendChild(buttonExit)} else {Container.appendChild(progress.progress());AutoCloseToast()}  
-           document.body.appendChild(Container)
-       
-         
-           let ContainerExist = false;
-           setTimeout(()=>{if(Container){ContainerExist = true}}, 1000)
-          document.body.addEventListener('click', (event)=>{
-            if(!Container.contains(event.target) && ContainerExist){
-              CloseToast('External')
-            }
-            })
-  
-           setTimeout(()=>{
-            Container.style.opacity = 1;
-      },500)
-  
-  
-           function AutoCloseToast() {
-            setTimeout(() => {
-                Container.style.opacity = 0;
-                if(ContainerExist){
-                  setTimeout(() => {
-                    document.body.removeChild(Container);
-                    ContainerExist = false;
-                }, 500);
-                }
-                resolve(false);
-            }, delay);
-        }
-  
-        function CloseToast(BtnClick){
-          Container.style.opacity = 0;
-          ContainerExist = false;
-            setTimeout(() => {
-              document.body.removeChild(Container);
-              resolve(BtnClick)
-          }, 500); 
+        const Container = document.createElement("div");
+              Container.addEventListener('click', ()=>{CloseToast()})
+        Object.assign(Container.style, styles.Container);
+   
+        const Modal = document.createElement("div");
+              Modal.addEventListener('click', (e)=>{e.stopPropagation()})
+        Object.assign(Modal.style, styles.Modal);
+   
+        const TitleText = document.createElement("p");
+              TitleText.innerText = TitleMsg
+        Object.assign(TitleText.style, styles.TitleText);
+        if(!TitleMsg){reject('TitleMsg is required!')}
+   
+        const MsgText = document.createElement("p");
+              MsgText.innerText= TextMsg
+        Object.assign(MsgText.style, styles.MsgText);
+   
+        const ContainerButtons = document.createElement("div");
+        Object.assign(ContainerButtons.style, styles.ContainerButtons);
+   
+        const ButtonsExit = document.createElement("button");
+              ButtonsExit.textContent = Btn_Cancel
+              ButtonsExit.addEventListener('click', ()=>{CloseToast(false)})
+        Object.assign(ButtonsExit.style, styles.Buttons);
+   
+       const Divisor = document.createElement("div")
+       Object.assign(Divisor.style, styles.Divisor);
+   
+        const ButtonsConfirm = document.createElement("button");
+              ButtonsConfirm.textContent= Btn_Confirm
+              ButtonsConfirm.addEventListener('click', ()=>{CloseToast(true)})
+        Object.assign(ButtonsConfirm.style, styles.Buttons);
+   
+        const ButtonWarning = document.createElement("button");
+                      Btn_Third = Btn_Third || 'OK'
+              ButtonWarning.textContent= Device === 'ios'? 'OK' : Btn_Third
+              ButtonWarning.addEventListener('click', ()=>{CloseToast()})
+        Object.assign(ButtonWarning.style, styles.Buttons);
+
+        document.body.appendChild(Container)
+        Container.appendChild(Modal)
+        Modal.appendChild(TitleText)
+       if(TextMsg){Modal.appendChild(MsgText)} 
+        Modal.appendChild(ContainerButtons)
+   
+       if(Device === 'android' && setting.ThirdButton){
+           ContainerButtons.appendChild(ButtonWarning)
+           ButtonWarning.style.position='absolute'
+           ButtonWarning.style.left= '50px'
+           ButtonsExit.style.marginLeft = '30px'
+   
        }
-  
+   
+       if(Btn_Cancel  && Btn_Confirm ){
+           ContainerButtons.appendChild(ButtonsExit)
+         if(Device === 'ios'){ContainerButtons.appendChild(Divisor)}  
+           ContainerButtons.appendChild(ButtonsConfirm)
+       } else {
+               ContainerButtons.style.display = 'flex'
+   
+           if(Device === 'ios'){
+               ContainerButtons.style.justifyContent='center'
+               ContainerButtons.style.alignItems='center'
+           } else {
+               ContainerButtons.style.justifyContent='end'
+               ContainerButtons.style.alignItems='end'
+               
+           }
+           ContainerButtons.appendChild(ButtonWarning)
+       } 
 
-      } else {
-            reject('TitleMsg is required!')  
-      }
-    })
+    function CloseToast(value){
+       Container.style.opacity = 0
+     setTimeout(()=>{
+        document.body.removeChild(Container)
+        if(value !== undefined){resolve(value)}
+     },500)
 
-};
+    } 
 
+
+    setTimeout(()=>{
+        Container.style.opacity = 1
+    },500)
+
+
+     })
+
+
+
+
+}

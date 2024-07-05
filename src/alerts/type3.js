@@ -1,10 +1,15 @@
 // Alert type 3
 
 import successImg from '../ico/success.png'
+import successImgAnimate from '../ico/success_animate.gif'
 import questionImg from '../ico/question.png'
+import questionImgAnimate from '../ico/question_animate.gif'
 import alertImg from '../ico/alert.png'
+import alertImgAnimate from '../ico/alert_animate.gif'
 import infoImg from '../ico/info.png'
+import infoImgAnimate from '../ico/info_animate.gif'
 import errorImg from '../ico/error.png'
+import errorImgAnimate from '../ico/error_animate.gif'
 
 import Progress from '../utils/progress'
 
@@ -29,7 +34,7 @@ return  new Promise((resolve,reject)=>{
           width: window.innerWidth < 600 ? '60vw' : window.innerWidth > 601 && window.innerWidth < 1024 ? '55vw' : window.innerWidth > 1024 ? '65vw' : '55vw',
           maxWidth: '33em',
           transform: 'translateX(-50%)',
-          backgroundColor: setting.isDark ? 'rgba(95,95,95,0.9)' : 'rgba(248, 248, 248,0.9)',
+          backgroundColor: setting.isDark ? 'rgba(55,55,55,0.9)' : 'rgba(248, 248, 248,0.9)',
           color: setting.color ? setting.color : setting.isDark ? '#eee' : '#333',
           padding: '3.3rem',
           borderRadius: '16px',
@@ -69,7 +74,7 @@ return  new Promise((resolve,reject)=>{
           height: TextMsg === undefined ?'130px' : '100px',
           width:  TextMsg === undefined ?'130px' : '100px',
           marginTop:'-60px',
-          marginBottom:'-20px'
+          //marginBottom:'-10px'
 
         }
 
@@ -104,12 +109,12 @@ return  new Promise((resolve,reject)=>{
                  
             const IcoImage = document.createElement('img')
             Object.assign(IcoImage.style, styles.Ico);
-                  if(Ico === 'Error'){IcoImage.src= errorImg}
-             else if(Ico === 'Success' || Ico === undefined || Ico === null){IcoImage.src= successImg} 
-             else if(Ico === 'Info'){IcoImage.src= infoImg} 
-             else if(Ico === 'Warning'){IcoImage.src= alertImg}
-             else if(Ico === 'Question'){IcoImage.src= questionImg} 
-             else {IcoImage.src= questionImg} 
+                  if(Ico === 'Error'){IcoImage.src= errorImgAnimate; IcoImage.onerror=()=>{IcoImage.src=errorImg}} 
+             else if(Ico === 'Success' || Ico === undefined || Ico === null){IcoImage.src= successImgAnimate; IcoImage.onerror=()=>{IcoImage.src=successImg}} 
+             else if(Ico === 'Info'){IcoImage.src= infoImgAnimate; IcoImage.onerror=()=>{IcoImage.src=infoImg}} 
+             else if(Ico === 'Warning'){IcoImage.src= alertImgAnimate; IcoImage.onerror=()=>{IcoImage.src=alertImg}} 
+             else if(Ico === 'Question'){IcoImage.src= questionImgAnimate; IcoImage.onerror=()=>{IcoImage.src=questionImg}} 
+             
             
 
        Container.appendChild(IcoImage)

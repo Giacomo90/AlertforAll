@@ -2,11 +2,11 @@
 ![AlertforAll](./read/logo.png)
 
 
-#### Version : 1.0.2
+### Version: 2.0.0 
+##### Warning: it is not compatible with version 1.x.x
 
-[Github](https://github.com/Giacomo90/AlertforAll)
-
-[BUG or INFO](https://github.com/Giacomo90/AlertforAll/issues)
+[Github](https://github.com/Giacomo90/AlertforAll) <br>
+[BUG or INFO](https://github.com/Giacomo90/AlertforAll/issues) <br>
 
 
 #### <font color="olive"> AlertforAll is a very lightweight library compatible with many javascript and typescript frameworks. </font>
@@ -28,7 +28,7 @@ After installing the module as described above, you need to import it to your pr
 
 
 ```javascript
-import AlertforAll,{Alert,Toast} from 'alertforalll'
+import AlertforAll,{Alert,Toast} from 'alertforall'
 ```
 
 ```javascript
@@ -44,7 +44,7 @@ const AlertforAll = require('alertforall')
 ```javascript
   import {Alert} from 'alertforall'
 
-  Alert.type1({TitleMsg:'This is an Alert from AlertforAll'})
+  Alert.type2({TitleMsg:'This is an Alert from AlertforAll'})
 ```
 ![screen type1](./read/screen1.png)
 
@@ -53,7 +53,7 @@ or
 ```javascript
   import {Alert} from 'alertforall'
 
-  Alert.type1({TitleMsg:'Do you want to save?', Btn_Confirm:'Yes', Btn_Cancel:'No'})
+  Alert.type2({TitleMsg:'Do you want to save?', Btn_Confirm:'Yes', Btn_Cancel:'No'})
 ```
 ![screen type1](./read/screen2.png)
 
@@ -71,7 +71,7 @@ const setting = {
 
 const Alert= AlertforAll(setting)
 
-Alert.type1({TitleMsg:'Do you want to save?', Btn_Confirm:'Yes', Btn_Cancel:'No'})
+Alert.type2({TitleMsg:'Do you want to save?', Btn_Confirm:'Yes', Btn_Cancel:'No'})
 ```
 Promises for slightly more advanced codes are also accepted.
 
@@ -114,10 +114,9 @@ Toasts still don't accept promises
 
 | NAME|CALL METHOD|ACCEPTED VALUES|REQUIRED| 
 | ------ | :------: | :------: | ---|
-| **type1()** | Alert.type1() or AlertforAll().type1() |**TitleMsg**:string <br> **Btn_Confirm**:string <br> **Btn_Cancel**:string| **TitleMsg**: required <br> **Btn_Confirm & Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.
-| **type2()** | Alert.type2() or AlertforAll().type2() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>**TextMsg**:string|**TitleMsg**: required <br> **Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.<br> **TextMsg**:not necessary
+| **type1()** | Alert.type1() or AlertforAll().type1() |**TitleMsg**:string <br> **TextMsg**:string<br>  **Btn_Confirm**:string <br> **Btn_Cancel**:string<br> **Btn_Third**:string(only android)| **TitleMsg**: required <br> **Btn_Confirm & Btn_Cancel**: not necessary, if missing activate the third button <br> **Btn_Third**:only on android, it activates either as a third button or automatically as a single button. |
+| **type2()** | Alert.type2() or AlertforAll().type2() |**TitleMsg**:string <br> **TextMsg**:string <br> **Btn_Confirm**:string <br> **Btn_Cancel**:string| **TitleMsg**: required <br> **Btn_Confirm & Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.
 | **type3()** | Alert.type3() or AlertforAll().type3() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>**TextMsg**:string <br> **Ico**: 'Success','Error','Warning','Info','Question'|**TitleMsg**: required <br> **Btn_Cancel**: not necessary, if not present the default 3s automatic closing is activated.<br> **TextMsg**:not necessary<br> **Ico**:not neccessary, default 'success'
-| **type4()** | Alert.type4() or AlertforAll().type4() |**TitleMsg**:string <br>**Btn_Cancel**:string <br>  **restriction**:array of string <br> **obliged**:array of string <br> **type**:'text','textarea','password', 'username','telephone','url','search'|**TitleMsg**: required <br> **Btn_Cancel**: required, <br> **restriction**:not necessary **obliged**:not necessary <br> **type**:not necessary,default 'text'
 | **frame1()** | Toast.frame1() or AlertforAll().frame1() |**TitleMsg**:string |**TitleMsg**: required <br>
 | **frame2()** | Toast.frame2() or AlertforAll().frame2() |**TitleMsg**:string <br> **Ico**:'Success','Error','Warning','Info' |**TitleMsg**: required <br> **Ico**:not neccessary, default 'Success'
 
@@ -126,14 +125,15 @@ Toasts still don't accept promises
 
 | NAME SETT|CALL METHOD|ACCEPTED VALUES|DEFAULT| 
 | ------ | :------: | :------: | ---|
-|**delay**|type1() type2() type3() frame1() frame2() | Number ms | 3000
-|**isDark**|type1() type2() type3() type4() frame1() frame2() | Boolean | false
-|**position**|type1() type2() type3() type4() | 'top','center',bottom' | 'top'
-|**color** |type1() type2() type3() type4() frame1() | hex value '#000' |'#eee' or '#333'|
-|**textCancelColor**| type1() type2() type3() type4() | hex value '#000'| #fff
-|**textConfirmColor**| type1() | hex value '#000'| #fff
-|**buttonConfirmColor**| type1() |hex value '#000' |#60b558
-|**buttonCancelColor**| type1() type2() type3() type4() | hex value '#000 |#d86060
+|**delay**| type2() type3() frame1() frame2() | Number ms | 3000
+|**device**| type1() | 'ios','android  | 'android'
+|**isDark**|type1() type2() type3()  frame1() frame2() | Boolean | false
+|**position**| type2() type3()  | 'top','center',bottom' | 'top'
+|**color** | type2() type3()  frame1() | hex value '#000' |'#eee' or '#333'|
+|**textCancelColor**| type2() type2() type3()  | hex value '#000'| #fff
+|**textConfirmColor**| type2() | hex value '#000'| #fff
+|**buttonConfirmColor**| type2() |hex value '#000' |#60b558
+|**buttonCancelColor**| type2() type2() type3()  | hex value '#000 |#d86060
 |**positionHorizontal** <br> **positionVertical** | frame1() frame2() |'start''center''end' | 'center <br> 'end' 
 |**fontSize**| frame1() frame2() | string px '12px' | '14px'
 |**fontWeight**|frame1() frame2()| string number '600' | '500'
@@ -151,6 +151,6 @@ AlertforAll(object).prototype()  // with changes applied
 
 AlertforAll().prototype() // standard without modifications
 ```
-
+library created for personal projects but made available for other programmers.
 
 #### <font color="green"> Library written by Giacomo Mattina. <br> First released version 6/29/2024 </font>

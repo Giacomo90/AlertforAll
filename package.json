@@ -1,19 +1,33 @@
 {
   "name": "alertforall",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A lightweight library to create different types of alerts for all devices.",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
-  },
   "author": "Giacomo Mattina",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.24.7",
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Giacomo90/AlertforAll",
+    "bug": "https://github.com/Giacomo90/AlertforAll/issues"
+  },
+  "keywords": [
+    "alert",
+    "toast",
+    "toasts",
+    "alerts",
+    "node",
+    "reac",
+    "next.js",
+    "javascript",
+    "native",
+    "style"
+  ],
+  "readmeFilename": "README.md"
 
 
 }
