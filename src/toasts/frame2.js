@@ -57,6 +57,8 @@ export function frame2({TitleMsg,Ico},sett){
     }
    }
 
+   return new Promise((resolve,reject)=>{
+
                const Container = document.createElement('div')
                Object.assign(Container.style, styles.Container);
 
@@ -75,6 +77,7 @@ export function frame2({TitleMsg,Ico},sett){
                      Object.assign(TitleTxt.style, styles.TitleTxt);
 
                const Message = document.createElement('p')
+               if(!TitleMsg){reject('TitleMsg is required!')}
                      Message.textContent= TitleMsg; 
                      Object.assign(Message.style, styles.Message);
 
@@ -94,8 +97,10 @@ export function frame2({TitleMsg,Ico},sett){
            setTimeout(()=>{
             Toast.style.opacity= 0;
                 setTimeout(()=>{
-            document.body.removeChild(Container)
+            document.body.removeChild(Container);
+            resolve(true)
                 },500)
              },setting.delay)
 
+} )
 }

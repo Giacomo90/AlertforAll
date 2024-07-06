@@ -2,7 +2,7 @@
 ![AlertforAll](./read/logo.png)
 
 
-### Version: 2.0.0 
+### Version: 2.0.1 
 ##### Warning: it is not compatible with version 1.x.x
 
 [Github](https://github.com/Giacomo90/AlertforAll) <br>

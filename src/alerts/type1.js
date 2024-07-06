@@ -68,7 +68,7 @@ const styles={
 
 
 
-     new Promise((resolve,reject)=>{
+ return    new Promise((resolve,reject)=>{
 
         const Container = document.createElement("div");
               Container.addEventListener('click', ()=>{CloseToast()})

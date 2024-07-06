@@ -41,31 +41,36 @@ const styles={
     },
 }
 
-
+return new Promise((resolve,reject)=>{
     const TextTitle = document.createElement('p')
-          TextTitle.textContent = TitleMsg;
-          Object.assign(TextTitle.style, styles.Text);
+    if(!TitleMsg){reject('TitleMsg is required!')}
+    TextTitle.textContent = TitleMsg;
+    Object.assign(TextTitle.style, styles.Text);
 
-    const Toast = document.createElement('div')
-    Object.assign(Toast.style, styles.Toast);
+const Toast = document.createElement('div')
+Object.assign(Toast.style, styles.Toast);
 
-    const Container = document.createElement('div')
-    Object.assign(Container.style, styles.Container);
-             
+const Container = document.createElement('div')
+Object.assign(Container.style, styles.Container);
+       
+
+       Toast.appendChild(TextTitle)
+       Container.appendChild(Toast)
+   document.body.appendChild(Container) 
    
-             Toast.appendChild(TextTitle)
-             Container.appendChild(Toast)
-         document.body.appendChild(Container) 
-         
-          setTimeout(()=>{
-            Toast.style.opacity =1;
-          },500)
+    setTimeout(()=>{
+      Toast.style.opacity =1;
+    },500)
 
 
-         setTimeout(()=>{
-        Toast.style.opacity= 0;
-            setTimeout(()=>{
-        document.body.removeChild(Container)
-            },500)
-         },setting.delay)
+   setTimeout(()=>{
+  Toast.style.opacity= 0;
+      setTimeout(()=>{
+  document.body.removeChild(Container);
+  resolve(true)
+      },500)
+   },setting.delay)
+
+})
+
 }
